@@ -1,0 +1,21 @@
+# Your actual config — contains your API key and your org's real criteria
+config.json
+
+# Your actual donor data — never commit real people's personal information
+donors.csv
+donors.xlsx
+*.donors.csv
+
+# Generated output
+fec_results/
+fec_results_summary.csv
+fec_bulk_cache/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS
+.DS_Store

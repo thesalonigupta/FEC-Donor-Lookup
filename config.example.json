@@ -1,0 +1,61 @@
+{
+  "_comment": "Copy this file to config.json and fill in your own values. config.json is gitignored so your API key and criteria never get committed.",
+
+  "api_key": "YOUR_FEC_API_KEY_HERE",
+
+  "input_file": "donors.csv",
+  "output_folder": "fec_results",
+  "summary_csv": "fec_results_summary.csv",
+
+  "min_date": "2016-01-01",
+
+  "max_workers": 15,
+  "max_results_per_donor": 30,
+
+  "_comment_columns": "Map these to your spreadsheet's actual column headers (case-insensitive). Address is optional but improves match accuracy.",
+  "columns": {
+    "first": "First",
+    "last": "Last",
+    "city": "City",
+    "state": "State",
+    "company": "Company",
+    "occupation": "Occupation",
+    "address": "Address"
+  },
+
+  "_comment_eligibility": "EXAMPLE CRITERIA BELOW. These are placeholder values to show the shape of the config — replace every list and threshold with your own organization's actual rules before using this tool. See README.md and PROMPTS.md for how to adapt evaluate_donor() in fec_donor_lookup.py to match.",
+
+  "eligibility": {
+    "min_single_donation": 1000,
+
+    "disqualifying_employers": [
+      "example corp",
+      "example holdings",
+      "sample industries"
+    ],
+
+    "disqualifying_occupations_by_state": {
+      "XX": ["example disqualifying title"]
+    },
+
+    "verify_occupations_by_state": {
+      "XX": ["example title needing manual review"]
+    },
+
+    "special_state": {
+      "code": "XX",
+      "description": "Example: a state with stricter local rules (e.g. a state where your campaign is running) gets its own tier below. Set code to '' to disable this path entirely and treat every donor the same way.",
+      "min_donations_high_tier_years": 10,
+      "min_donations_high_tier_count": 10,
+      "min_donations_mid_tier_amount": 5000
+    },
+
+    "standard_path": {
+      "description": "Applies to every donor not covered by special_state above.",
+      "high_value_threshold": 20000,
+      "mid_value_threshold": 9000,
+      "mid_value_min_count": 3,
+      "recency_years": 5
+    }
+  }
+}
